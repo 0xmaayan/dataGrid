@@ -70553,7 +70553,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/App */ "./resources/js/components/App.js");
+__webpack_require__(/*! ./components/App */ "./resources/js/components/App.jsx");
 
 /***/ }),
 
@@ -70615,10 +70615,10 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/App.js":
-/*!****************************************!*\
-  !*** ./resources/js/components/App.js ***!
-  \****************************************/
+/***/ "./resources/js/components/App.jsx":
+/*!*****************************************!*\
+  !*** ./resources/js/components/App.jsx ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70629,9 +70629,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _UploadData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UploadData */ "./resources/js/components/UploadData.js");
-/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Search */ "./resources/js/components/Search.js");
-/* harmony import */ var _TableGrid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TableGrid */ "./resources/js/components/TableGrid.js");
+/* harmony import */ var _UploadData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UploadData */ "./resources/js/components/UploadData.jsx");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Search */ "./resources/js/components/Search.jsx");
+/* harmony import */ var _TableGrid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TableGrid */ "./resources/js/components/TableGrid.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -70690,10 +70690,10 @@ if (document.getElementById('app')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Search.js":
-/*!*******************************************!*\
-  !*** ./resources/js/components/Search.js ***!
-  \*******************************************/
+/***/ "./resources/js/components/Search.jsx":
+/*!********************************************!*\
+  !*** ./resources/js/components/Search.jsx ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70723,10 +70723,10 @@ var Search = function Search() {
 
 /***/ }),
 
-/***/ "./resources/js/components/TableGrid.js":
-/*!**********************************************!*\
-  !*** ./resources/js/components/TableGrid.js ***!
-  \**********************************************/
+/***/ "./resources/js/components/TableGrid.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/components/TableGrid.jsx ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70831,37 +70831,98 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/UploadData.js":
-/*!***********************************************!*\
-  !*** ./resources/js/components/UploadData.js ***!
-  \***********************************************/
+/***/ "./resources/js/components/UploadData.jsx":
+/*!************************************************!*\
+  !*** ./resources/js/components/UploadData.jsx ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UploadData; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-var UploadData = function UploadData() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "custom-file"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    className: "was-validated"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "file",
-    className: "custom-file-input",
-    id: "validatedCustomFile",
-    required: true
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "custom-file-label"
-  }, "Choose file..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "invalid-feedback"
-  }, "Example invalid custom file feedback")));
-};
 
-/* harmony default export */ __webpack_exports__["default"] = (UploadData);
+
+var UploadData =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(UploadData, _Component);
+
+  function UploadData(props) {
+    _classCallCheck(this, UploadData);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(UploadData).call(this, props));
+  }
+
+  _createClass(UploadData, [{
+    key: "onChange",
+    value: function onChange(file) {
+      if (!file.length) return;
+      this.fileUpload(file[0]);
+    }
+  }, {
+    key: "fileUpload",
+    value: function fileUpload(file) {
+      var formData = new FormData();
+      formData.append('data_file', file);
+      var url = '/api/import';
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        return console.log(response);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "custom-file"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        className: "custom-file-input",
+        id: "dataFile",
+        accept: ".csv",
+        onChange: function onChange(e) {
+          return _this.onChange(e.target.files);
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "custom-file-label",
+        htmlFor: "customFile"
+      }, "Choose file"));
+    }
+  }]);
+
+  return UploadData;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
 
 /***/ }),
 
