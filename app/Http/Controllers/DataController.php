@@ -14,8 +14,9 @@ class DataController extends Controller
 		Data::truncate();
 		Excel::import(new DataImport, $request->file('data_file'));
 
+		$data = Data::all()->toArray();
 		return response()->json([
-			'success' => true
+			'data' => $data
 		]); 
 	}
 }

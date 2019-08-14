@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import axios, { post } from 'axios';
+import connect from "react-redux/es/connect/connect";
+// Actions
+import { siteAddData } from '../redux/actions/data';
 
-export default class UploadData extends Component {
+class UploadData extends Component {
 
 	constructor(props){
 		super(props);
@@ -13,17 +16,12 @@ export default class UploadData extends Component {
 		this.fileUpload(file[0]);
 	}
 
-	fileUpload(file){
+	async fileUpload (file){
 		var formData = new FormData();
 		formData.append('data_file',file);
 
-		const url = '/api/import';
-		axios.post(url, formData,{
-			headers: {
-				'Content-Type': 'multipart/form-data'
-			}
-		})
-		.then(response => console.log(response))
+		await this.props.siteAddData(formData);
+	
 	}
 
 	render(){
@@ -32,7 +30,14 @@ export default class UploadData extends Component {
 			<input type="file" className="custom-file-input" id="dataFile" accept=".csv" onChange={ (e) => this.onChange(e.target.files) }/>
 			<label className="custom-file-label" htmlFor="customFile">Choose file</label>
 			</div>
-
 			)
 	}
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    siteAddData: (data) => dispatch(siteAddData(data)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(UploadData);

@@ -24,7 +24,3 @@ export default class App extends Component {
         );
     }
 }
-
-if (document.getElementById('app')) {
-    ReactDOM.render(<App />, document.getElementById('app'));
-}
