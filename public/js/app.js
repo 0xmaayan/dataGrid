@@ -70675,7 +70675,13 @@ function (_Component) {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UploadData__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TableGrid__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-lg-6"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UploadData__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-lg-6"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-lg-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TableGrid__WEBPACK_IMPORTED_MODULE_4__["default"], null))));
     }
   }]);
 
@@ -70704,10 +70710,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Search = function Search() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    className: "form-inline my-2 my-lg-0"
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "form-inline my-2 my-lg-0 float-md-right"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: "form-control mr-sm-2",
     type: "search",
@@ -70716,7 +70720,7 @@ var Search = function Search() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn btn-outline-success my-2 my-sm-0",
     type: "submit"
-  }, "Search")));
+  }, "Search"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Search);

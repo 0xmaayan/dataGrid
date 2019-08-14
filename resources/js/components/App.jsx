@@ -10,9 +10,15 @@ export default class App extends Component {
         return (
             <div className="container">
                 <div className="row justify-content-center">
-                    <UploadData/>
-                    <Search/>
-                    <TableGrid/>
+                    <div className="col-lg-6">
+                        <UploadData/>
+                    </div>
+                    <div className="col-lg-6">
+                        <Search/>
+                    </div>
+                    <div className="col-lg-12">
+                        <TableGrid/>                    
+                    </div>
                 </div>
             </div>
         );
