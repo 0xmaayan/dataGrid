@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import connect from "react-redux/es/connect/connect";
 // components
 import UploadData from './UploadData';
 import Search from './Search';
 import TableGrid from './TableGrid';
 
-export default class App extends Component {
+class App extends Component {
+
+    constructor(props){
+        super(props)
+    }
+
     render() {
+        const {data} = this.props;
         return (
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="col-lg-6">
+                    <div className="col-md-6">
                         <UploadData/>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-md-6">
                         <Search/>
                     </div>
-                    <div className="col-lg-12">
-                        <TableGrid/>                    
-                    </div>
+                    {
+                        data && !!data.length && 
+                        <div className="col-lg-12">
+                            <TableGrid data={data}/>                    
+                        </div>
+                    }
                 </div>
             </div>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    data: state.data
+  }
+}
+
+export default connect(mapStateToProps, null)(App);
