@@ -26,7 +26,7 @@ class UploadData extends Component {
 
 	render(){
 		return(
-			<div className="custom-file">
+			<div className="custom-file my-2">
 			<input type="file" className="custom-file-input" id="dataFile" accept=".csv" onChange={ (e) => this.onChange(e.target.files) }/>
 			<label className="custom-file-label" htmlFor="customFile">Choose file</label>
 			</div>
