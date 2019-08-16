@@ -7,12 +7,15 @@ import {
 export const siteAddData = (formData) => {
 
   return function(dispatch) {
-    return axios.post(process.env.MIX_API_URL+'import/', formData,{
+    return axios.post(process.env.MIX_API_URL+'data/', formData,{
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     }).then(({ data }) => {
       dispatch(siteAddDataSuccess(data.data));
+    })
+    .catch((data) => {
+      dispatch(datasHasError(data.data));
     });
   };
 };
