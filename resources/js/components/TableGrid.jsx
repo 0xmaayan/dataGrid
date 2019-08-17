@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import 'jqwidgets-scripts/jqwidgets/styles/jqx.base.css';
 import 'jqwidgets-scripts/jqwidgets/styles/jqx.material-purple.css';
 import JqxGrid, {jqx} from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxgrid';
+// Highcharts
+import HighCharts from './Highcharts';
 
 class TableGrid extends Component {
 
@@ -10,20 +12,7 @@ class TableGrid extends Component {
     super(props);
     const source =
     {
-      datafields: [
-      { name: 'PassengerId', type: 'string', map: '0' },
-      { name: 'Pclass', type: 'string', map: '1' },
-      { name: 'Name', type: 'string', map: '2' },
-      { name: 'Sex', type: 'string', map: '3' },
-      { name: 'Age', type: 'string', map: '4' },
-      { name: 'SibSp', type: 'string', map: '5' },
-      { name: 'Parch', type: 'string', map: '6' },
-      { name: 'Ticket', type: 'string', map: '7' },
-      { name: 'Fare', type: 'string', map: '8' },
-      { name: 'Cabin', type: 'string', map: '9' },
-      { name: 'Embarked', type: 'string', map: '10' }
-      ],
-      datatype: 'array',
+      datatype: 'json',
       localdata: props.data
     };
     this.state = {
@@ -41,7 +30,7 @@ class TableGrid extends Component {
       { text: 'Embarked', datafield: 'Embarked',width:50}
       ],
       source: new jqx.dataAdapter(source,{ autoBind: true }),
-      theme: 'material purple',
+      theme: 'material-purple',
     }
   }
 
@@ -55,10 +44,10 @@ class TableGrid extends Component {
         />
       <div className="row">
         <div className="col-md-6">
-          <h1>Pie</h1>
+          <HighCharts type="pie" text="My pie chart"/>
         </div>
         <div className="col-md-6">
-          <h1>Bar</h1>
+          <HighCharts type="bar" text="My bar chart"/>
         </div>
       </div>
       </div>
