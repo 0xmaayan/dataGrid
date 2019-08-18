@@ -4,7 +4,8 @@ import 'jqwidgets-scripts/jqwidgets/styles/jqx.base.css';
 import 'jqwidgets-scripts/jqwidgets/styles/jqx.material-purple.css';
 import JqxGrid, {jqx} from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxgrid';
 // Highcharts
-import HighCharts from './Highcharts';
+import BarChart from './Highcharts/BarChart';
+import PieChart from './Highcharts/PieChart';
 
 class TableGrid extends Component {
 
@@ -44,10 +45,10 @@ class TableGrid extends Component {
         />
       <div className="row">
         <div className="col-md-6">
-          <HighCharts type="pie" text="My pie chart"/>
+          <PieChart text="My pie chart" name="Sex" index="Sex" data={this.props.data}/>
         </div>
         <div className="col-md-6">
-          <HighCharts type="bar" text="My bar chart"/>
+          <BarChart text="My bar chart" name="Pclass" index="Pclass" data={this.props.data}/>
         </div>
       </div>
       </div>
