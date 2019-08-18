@@ -4,7 +4,7 @@ import connect from "react-redux/es/connect/connect";
 // components
 import UploadData from './UploadData';
 import Search from './Search';
-import TableGrid from './TableGrid';
+import TableGrid from './TableGrid/Index';
 
 class App extends Component {
 
