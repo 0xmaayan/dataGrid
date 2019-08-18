@@ -23,7 +23,7 @@ class DataController extends Controller
 	{
 		Data::truncate();
 		Excel::import(new DataImport, $request->file('data_file'));
-		// map all rows as array of values
+
 		$data = Data::all()->toArray();
 		
 		return response()->json([
