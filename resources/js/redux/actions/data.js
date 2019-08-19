@@ -1,6 +1,7 @@
 import {
   ADD_DATA,
   UPDATE_DATA,
+  DELETE_DATA,
   IS_LOADING,
   HAS_ERROR
 } from './types';
@@ -33,6 +34,18 @@ export const siteUpdateData = (data) => {
   }
 };
 
+export const siteDeleteData = (data) => {
+  return function(dispatch){
+    return axios.delete(process.env.MIX_API_URL+'data/'+data.PassengerId,data)
+    .then(({ response }) => {
+      dispatch(siteDeleteDataSuccess(data));
+    })
+    .catch((response) => {
+      dispatch(datasHasError(response.data));
+    });
+  }
+}
+
 export function siteAddDataSuccess(data){
   return {
     type: ADD_DATA,
@@ -43,6 +56,13 @@ export function siteAddDataSuccess(data){
 export function siteUpdateDataSuccess(data) {
  return {
     type: UPDATE_DATA,
+    payload: data
+  };
+}
+
+export function siteDeleteDataSuccess(data) {
+  return {
+    type: DELETE_DATA,
     payload: data
   };
 }

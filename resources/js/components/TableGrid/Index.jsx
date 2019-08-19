@@ -37,7 +37,8 @@ class TableGrid extends Component {
     let source =
     {
       datatype: 'json',
-      localdata: props.data
+      localdata: props.data,
+      id: 'PassengerId'
     };
     this.state = {
       columns: [
@@ -107,7 +108,8 @@ class TableGrid extends Component {
             let source =
             {
               datatype: 'json',
-              localdata: this.props.data
+              localdata: this.props.data,
+              id: 'PassengerId'
             };
             this.setState({
               source : new jqx.dataAdapter(source)
@@ -129,11 +131,33 @@ class TableGrid extends Component {
             console.log(event)
           };
 
+  async deleteButtonClick(){
+    const rowIndex = this.myGrid.current.getselectedrowindex();
+    const rowData = this.myGrid.current.getrowdata(rowIndex);
+    await this.props.siteDeleteData(rowData);
+    let source =
+    {
+      datatype: 'json',
+      localdata: this.props.data,
+      id: 'PassengerId'
+    };
+    this.setState({
+      source : new jqx.dataAdapter(source)
+    })
+    
+      // passing 'cells' to the 'updatebounddata' method will refresh only the cells values when the new rows count is equal to the previous rows count.
+      this.myGrid.current.updatebounddata('cells');
+  }
+
           render() {
             return (
               <div>
                 <JqxButton onClick={this.searchButtonClick}
                 width={80} height={25} value={'Search'} textPosition={'center'} />
+
+                <JqxButton onClick={() => this.deleteButtonClick()}
+                width={80} height={25} value={'Delete'} textPosition={'center'} />
+
                 <JqxGrid ref={this.myGrid}
                 width={"100%"} columns={this.state.columns} source={this.state.source} theme={this.state.theme}
                 pageable={true} autoheight={true} sortable={true} altrows={true}

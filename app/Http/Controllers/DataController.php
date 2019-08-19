@@ -19,6 +19,17 @@ class DataController extends Controller
     	'data' => $updatedRecord
     ]);
 	}
+
+	public function destroy(Request $request, $id)
+	{
+    $record = Data::where('PassengerId','=',$id);
+    $deletedRecord = $record->delete();
+   
+    return response()->json([
+    	'data' => $record
+    ]);
+	}
+
 	public function import(Request $request) 
 	{
 		Data::truncate();
