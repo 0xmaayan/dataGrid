@@ -13,10 +13,10 @@ class DataController extends Controller
 	{
 		$data = $request->only('PassengerId','Pclass','Name','Sex','Age','SibSp','Parch','Ticket','Fare','Cabin','Embarked');
     $record = Data::where('PassengerId','=',$id);
+    $updatedRecord = $record->updateOrCreate(['PassengerId' => $request->PassengerId],$data);
    
-    $updatedRecordSuccess = $record->update($data);
     return response()->json([
-    	'success' => $updatedRecordSuccess
+    	'data' => $updatedRecord
     ]);
 	}
 	public function import(Request $request) 
