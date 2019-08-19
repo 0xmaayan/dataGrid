@@ -30,9 +30,11 @@ class TableGrid extends Component {
     this.Fare = React.createRef();
     this.Cabin = React.createRef();
     this.Embarked = React.createRef();
+    // binding functions
+    this.saveEditButton = this.saveEditButton.bind(this);
 
     let editrow = -1;
-    const source =
+    let source =
     {
       datatype: 'json',
       localdata: props.data
@@ -81,7 +83,7 @@ class TableGrid extends Component {
     }
   }
 
-  saveEditButton(e){
+  async saveEditButton(e){
     if (this.editrow >= 0) {
             const row = {
              PassengerId: this.PassengerId.current.getOptions('value'),
@@ -99,11 +101,21 @@ class TableGrid extends Component {
             const rowID = this.myGrid.current.getrowid(this.editrow);
             this.myGrid.current.updaterow(rowID, row);
             this.editWindow.current.hide();
-            // api call to update record on server
-            axios.put(process.env.MIX_API_URL+'data/'+row.PassengerId,row)
-              .then((response) => {
-                console.log(response);
-              })
+           
+            await this.props.siteUpdateData(row);
+
+            let source =
+            {
+              datatype: 'json',
+              localdata: this.props.data
+            };
+            this.setState({
+              source : new jqx.dataAdapter(source)
+            })
+          
+            // passing 'cells' to the 'updatebounddata' method will refresh only the cells values when the new rows count is equal to the previous rows count.
+            this.myGrid.current.updatebounddata('cells');
+
         }
   }
 
@@ -201,7 +213,7 @@ class TableGrid extends Component {
                                 <tr>
                                     <td align={'right'} />
                                     <td style={{ paddingTop: '10px' }} align={'right'}>
-                                        <JqxButton style={{ display: 'inline-block', marginRight: '5px' }} width={50} onClick={() => this.saveEditButton()}>
+                                        <JqxButton style={{ display: 'inline-block', marginRight: '5px' }} width={50} onClick={this.saveEditButton}>
                                             Save
                                         </JqxButton>
                                         <JqxButton style={{ display: 'inline-block', marginRight: '5px' }} width={50} onClick={() => this.cancelEditBtn()}>

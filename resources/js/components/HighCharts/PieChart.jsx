@@ -44,6 +44,28 @@ class PieChart extends React.Component {
     };
   }
 
+    componentDidUpdate(prevProps, prevState) {
+  if (prevProps.data !== this.props.data){
+    let {data,index} = this.props;
+    var hash={},result=[];
+
+    data.forEach(function(obj){
+      var id=obj[index];
+      if(hash[id]){
+       hash[id].y++;
+     }else{
+       result.push(hash[id]={
+        y:1,
+        name: id
+      });
+     }
+   });
+    var series = {...this.state.series}
+    series.data = result;
+    this.setState({series})
+  }
+}
+
   componentDidMount(){
     let {data,index} = this.props;
 
