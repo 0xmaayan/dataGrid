@@ -51,17 +51,19 @@ class BarChart extends React.Component {
   componentDidUpdate(prevProps, prevState) {
   if (prevProps.data !== this.props.data){
     let result = setData(this.props);
-      var series = {...this.state.series}
-      series.data = result;
-      this.setState({series})
+    this.setLocalState(result);
   }
 }
 
   componentDidMount(){
     let result = setData(this.props);
-      var series = {...this.state.series}
-      series.data = result;
-      this.setState({series})
+    this.setLocalState(result);
+  }
+
+  setLocalState(result){
+    var series = {...this.state.series}
+    series.data = result;
+    this.setState({series})
   }
 
   render() {
