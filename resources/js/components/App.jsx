@@ -5,6 +5,8 @@ import connect from "react-redux/es/connect/connect";
 import UploadData from './UploadData';
 import Search from './Search';
 import TableGrid from './TableGrid/Index';
+// Actions
+import { siteUpdateData } from '../redux/actions/data';
 
 class App extends Component {
 
@@ -13,7 +15,8 @@ class App extends Component {
     }
 
     render() {
-        const {data} = this.props;
+        const {data, siteUpdateData} = this.props;
+
         return (
             <div className="container">
                 <div className="row justify-content-center">
@@ -26,7 +29,7 @@ class App extends Component {
                     {
                         data && !!data.length && 
                         <div className="col-lg-12">
-                            <TableGrid data={data}/>                    
+                            <TableGrid data={data} siteUpdateData={(data) => siteUpdateData(data)}/>                    
                         </div>
                     }
                 </div>
@@ -34,11 +37,15 @@ class App extends Component {
         );
     }
 }
-
+const mapDispatchToProps = (dispatch) => {
+  return {
+    siteUpdateData: (data) => dispatch(siteUpdateData(data)),
+  }
+}
 const mapStateToProps = (state) => {
   return {
     data: state.data
   }
 }
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
