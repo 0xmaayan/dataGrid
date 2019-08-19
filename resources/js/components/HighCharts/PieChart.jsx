@@ -1,7 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
+// High charts
 import Highcharts from 'highcharts'
 import HighchartsReact from "highcharts-react-official";
+// helpers
+import setData from './helpers';
 
 class PieChart extends React.Component {
   constructor(props) {
@@ -44,44 +47,17 @@ class PieChart extends React.Component {
     };
   }
 
-    componentDidUpdate(prevProps, prevState) {
-  if (prevProps.data !== this.props.data){
-    let {data,index} = this.props;
-    var hash={},result=[];
-
-    data.forEach(function(obj){
-      var id=obj[index];
-      if(hash[id]){
-       hash[id].y++;
-     }else{
-       result.push(hash[id]={
-        y:1,
-        name: id
-      });
-     }
-   });
-    var series = {...this.state.series}
-    series.data = result;
-    this.setState({series})
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.data !== this.props.data){
+      let result = setData(this.props);
+      var series = {...this.state.series}
+      series.data = result;
+      this.setState({series})
+    }
   }
-}
 
   componentDidMount(){
-    let {data,index} = this.props;
-
-    var hash={},result=[];
-
-    data.forEach(function(obj){
-      var id=obj[index];
-      if(hash[id]){
-       hash[id].y++;
-     }else{
-       result.push(hash[id]={
-        y:1,
-        name: id
-      });
-     }
-   });
+    let result = setData(this.props);
     var series = {...this.state.series}
     series.data = result;
     this.setState({series})

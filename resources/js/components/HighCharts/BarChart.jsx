@@ -1,8 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
+// High charts
 import Highcharts from 'highcharts'
-//import HighchartsReact from 'highcharts-react-official'
 import HighchartsReact from "highcharts-react-official";
+// helpers
+import setData from './helpers';
 
 class BarChart extends React.Component {
   constructor(props) {
@@ -16,7 +18,6 @@ class BarChart extends React.Component {
         type: 'bar'
       },
       xAxis: {
-        //categories: [],
         type: 'category'
       },
       plotOptions: {
@@ -49,44 +50,18 @@ class BarChart extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
   if (prevProps.data !== this.props.data){
-    let {data,index} = this.props;
-    var hash={},result=[];
-
-    data.forEach(function(obj){
-      var id=obj[index];
-      if(hash[id]){
-       hash[id].y++;
-     }else{
-       result.push(hash[id]={
-        y:1,
-        name: id
-      });
-     }
-   });
-    var series = {...this.state.series}
-    series.data = result;
-    this.setState({series})
+    let result = setData(this.props);
+      var series = {...this.state.series}
+      series.data = result;
+      this.setState({series})
   }
 }
 
   componentDidMount(){
-    let {data,index} = this.props;
-    var hash={},result=[];
-
-    data.forEach(function(obj){
-      var id=obj[index];
-      if(hash[id]){
-       hash[id].y++;
-     }else{
-       result.push(hash[id]={
-        y:1,
-        name: id
-      });
-     }
-   });
-    var series = {...this.state.series}
-    series.data = result;
-    this.setState({series})
+    let result = setData(this.props);
+      var series = {...this.state.series}
+      series.data = result;
+      this.setState({series})
   }
 
   render() {
