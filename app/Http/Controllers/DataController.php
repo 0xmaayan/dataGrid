@@ -9,6 +9,15 @@ use App\Data;
 
 class DataController extends Controller
 {
+	public function store(Request $request){
+		$data = $request->only('PassengerId','Pclass','Name','Sex','Age','SibSp','Parch','Ticket','Fare','Cabin','Embarked');
+		$record = Data::create($data);
+
+		return response()->json([
+    	'data' => $record
+    ]);
+	}
+
 	public function update(Request $request, $id)
 	{
 		$data = $request->only('PassengerId','Pclass','Name','Sex','Age','SibSp','Parch','Ticket','Fare','Cabin','Embarked');

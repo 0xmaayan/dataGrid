@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data extends Model
 {
-		protected $primaryKey = 'PassengerId';
-
     protected $fillable = [
             'PassengerId','Pclass','Name','Sex','Age','SibSp','Parch','Ticket','Fare','Cabin','Embarked'
     ];

@@ -4,6 +4,7 @@ import {
   ADD_DATA,
   UPDATE_DATA,
   DELETE_DATA,
+  CREATE_DATA,
   IS_LOADING,
   HAS_ERROR,
 } from '../actions/types';
@@ -26,6 +27,10 @@ export default function (state = INITIAL_STATE.data, action) {
       let removeIndex = state.map(function(record) { return record.PassengerId; }).indexOf(action.payload.PassengerId);
       state.splice(removeIndex, 1);
       return Object.assign([],state,state);
+
+    case CREATE_DATA:
+      let newStata = state.concat(action.payload);
+      return Object.assign([],state,newStata);
 
     case IS_LOADING:
       return {...state, isLoading: action.isLoading};
