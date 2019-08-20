@@ -8,6 +8,8 @@ import JqxButton from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxbuttons';
 import JqxWindow from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxwindow';
 import JqxInput from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxinput';
 import JqxNumberInput from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxnumberinput';
+import JqxDropDownList from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxdropdownlist';
+
 // Highcharts
 import BarChart from '../Highcharts/BarChart';
 import PieChart from '../Highcharts/PieChart';
@@ -17,6 +19,7 @@ class TableGrid extends Component {
   constructor(props) {
     super(props);
     this.editWindow = React.createRef();
+    this.searchWindow = React.createRef();
     this.myGrid = React.createRef();
     // data values refs
     this.PassengerId = React.createRef();
@@ -30,6 +33,8 @@ class TableGrid extends Component {
     this.Fare = React.createRef();
     this.Cabin = React.createRef();
     this.Embarked = React.createRef();
+    this.myDropDownList = React.createRef();
+    this.searchInput = React.createRef();
     // binding functions
     this.saveEditButton = this.saveEditButton.bind(this);
 
@@ -81,6 +86,7 @@ class TableGrid extends Component {
       ],
       source: new jqx.dataAdapter(source,{ autoBind: true }),
       theme: 'material-purple',
+      dropDownSource: ['First Name', 'Last Name', 'Product', 'Quantity', 'Price']
     }
   }
 
@@ -125,10 +131,9 @@ class TableGrid extends Component {
         this.editWindow.current.hide();
     }
 
-  searchButtonClick (event) {
-            /*this.myWindow.current!.open();
-            this.myWindow.current!.move(60, 60);*/
-            console.log(event)
+  searchButtonClick () {
+            this.searchWindow.current.open();
+            /*this.myWindow.current!.move(60, 60);*/
           };
 
   async deleteButtonClick(){
@@ -149,10 +154,17 @@ class TableGrid extends Component {
       this.myGrid.current.updatebounddata('cells');
   }
 
+  findBtnOnClick(){
+    console.log('findBtnOnClick');
+  }
+  clearBtnOnClick() {
+        console.log('clearBtnOnClick');
+    }
+
           render() {
             return (
               <div>
-                <JqxButton onClick={this.searchButtonClick}
+                <JqxButton onClick={() => this.searchButtonClick()}
                 width={80} height={25} value={'Search'} textPosition={'center'} />
 
                 <JqxButton onClick={() => this.deleteButtonClick()}
@@ -247,6 +259,31 @@ class TableGrid extends Component {
                                 </tr>
                             </tbody>
                         </table>
+                </JqxWindow>
+                <JqxWindow ref={this.searchWindow} width={210} height={180} autoOpen={false} resizable={false}>
+                    <div>Find Record</div>
+                    <div style={{ overflow: 'hidden' }}>
+                        <div>Find what:</div>
+                        <div style={{ marginTop: '5px' }}>
+                            <JqxInput ref={this.searchInput} width={194} height={23} />
+                        </div>
+                        <div style={{ marginTop: '7px', clear: 'both' }}>Look in:</div>
+                        <div style={{ marginTop: '5px' }}>
+                            <JqxDropDownList ref={this.myDropDownList}
+                                width={200} height={23} selectedIndex={0}
+                                source={this.state.dropDownSource} autoDropDownHeight={true} />
+                        </div>
+                        <div>
+                            <JqxButton style={{ marginTop: '15px', marginLeft: '50px', float: 'left' }}
+                                onClick={() => this.findBtnOnClick()} width={70}>
+                                Find
+                            </JqxButton>
+                            <JqxButton style={{ marginLeft: '5px', marginTop: '15px', float: 'left' }}
+                                onClick={() => this.clearBtnOnClick()} width={70}>
+                                Clear
+                            </JqxButton>
+                        </div>
+                    </div>
                 </JqxWindow>
                 <div className="row">
                   <div className="col-md-6">
