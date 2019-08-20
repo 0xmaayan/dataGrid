@@ -23,7 +23,6 @@ export default function (state = INITIAL_STATE.data, action) {
     return Object.assign([],state,newState);
 
     case DELETE_DATA:
-      console.log(action.payload)
       let removeIndex = state.map(function(record) { return record.PassengerId; }).indexOf(action.payload.PassengerId);
       state.splice(removeIndex, 1);
       return Object.assign([],state,state);
