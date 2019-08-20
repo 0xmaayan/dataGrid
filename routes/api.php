@@ -17,4 +17,4 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 Route::resource('/data','DataController');
-Route::post('/data', 'DataController@import');
+Route::post('/data/import', 'DataController@import');

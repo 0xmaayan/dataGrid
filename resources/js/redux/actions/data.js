@@ -2,6 +2,7 @@ import {
   ADD_DATA,
   UPDATE_DATA,
   DELETE_DATA,
+  CREATE_DATA,
   IS_LOADING,
   HAS_ERROR
 } from './types';
@@ -9,7 +10,7 @@ import {
 export const siteAddData = (formData) => {
 
   return function(dispatch) {
-    return axios.post(process.env.MIX_API_URL+'data/', formData,{
+    return axios.post(process.env.MIX_API_URL+'data/import/', formData,{
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -46,6 +47,18 @@ export const siteDeleteData = (data) => {
   }
 }
 
+export const siteCreateData = (data) => {
+  return function(dispatch){
+    return axios.post(process.env.MIX_API_URL+'data/',data)
+    .then(({ response }) => {
+      dispatch(siteCreateDataSuccess(data));
+    })
+    .catch((response) => {
+      dispatch(datasHasError(response.data));
+    });
+  }
+}
+
 export function siteAddDataSuccess(data){
   return {
     type: ADD_DATA,
@@ -63,6 +76,13 @@ export function siteUpdateDataSuccess(data) {
 export function siteDeleteDataSuccess(data) {
   return {
     type: DELETE_DATA,
+    payload: data
+  };
+}
+
+export function siteCreateDataSuccess(data) {
+  return {
+    type: CREATE_DATA,
     payload: data
   };
 }

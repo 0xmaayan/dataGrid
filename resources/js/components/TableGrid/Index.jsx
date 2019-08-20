@@ -16,6 +16,7 @@ class TableGrid extends Component {
 
   constructor(props) {
     super(props);
+    this.createWindow = React.createRef();
     this.editWindow = React.createRef();
     this.myGrid = React.createRef();
     // data values refs
@@ -30,6 +31,18 @@ class TableGrid extends Component {
     this.Fare = React.createRef();
     this.Cabin = React.createRef();
     this.Embarked = React.createRef();
+    // create refs values
+    this.createPassengerId = React.createRef();
+    this.createPclass = React.createRef();
+    this.createName = React.createRef();
+    this.createSex = React.createRef();
+    this.createAge = React.createRef();
+    this.createSibSp = React.createRef();
+    this.createParch = React.createRef();
+    this.createTicket = React.createRef();
+    this.createFare = React.createRef();
+    this.createCabin = React.createRef();
+    this.createEmbarked = React.createRef();
     // binding functions
     this.saveEditButton = this.saveEditButton.bind(this);
 
@@ -82,6 +95,48 @@ class TableGrid extends Component {
       source: new jqx.dataAdapter(source,{ autoBind: true }),
       theme: 'material-purple',
     }
+  }
+
+  createButtonClick(){
+    let rowCount = this.myGrid.current.getdatainformation().rowscount;
+    var rowData = this.myGrid.current.getrowdata(rowCount-1);
+    let newPassengerId = parseInt(rowData.PassengerId) + 1;
+    this.createPassengerId.current.val(newPassengerId);
+    // show the popup window.
+    this.createWindow.current.open();
+  }
+
+  async saveCreateButton(){
+    const data = {
+     PassengerId: this.createPassengerId.current.getOptions('value'),
+     Pclass: this.createPclass.current.getOptions('value'),
+     Name:   this.createName.current.getOptions('value'),
+     Sex: this.createSex.current.getOptions('value'),
+     Age: this.createAge.current.getOptions('value'),
+     SibSp: this.createSibSp.current.getOptions('value'),
+     Parch: this.createParch.current.getOptions('value'),
+     Ticket: this.createTicket.current.getOptions('value'),
+     Fare: this.createFare.current.getOptions('value'),
+     Cabin: this.createCabin.current.getOptions('value'),
+     Embarked: this.createEmbarked.current.getOptions('value'),
+    };
+
+    this.createWindow.current.hide();
+    await this.props.siteCreateData(data);
+
+    let source =
+    {
+      datatype: 'json',
+      localdata: this.props.data,
+      id: 'PassengerId'
+    };
+    this.setState({
+      source : new jqx.dataAdapter(source)
+    })
+  }
+
+  cancelCreateBtn(){
+    this.createWindow.current.hide();
   }
 
   async saveEditButton(e){
@@ -158,11 +213,99 @@ class TableGrid extends Component {
                 <JqxButton onClick={() => this.deleteButtonClick()}
                 width={80} height={25} value={'Delete'} textPosition={'center'} />
 
+                <JqxButton onClick={() => this.createButtonClick()}
+                width={80} height={25} value={'Add'} textPosition={'center'} />
+
                 <JqxGrid ref={this.myGrid}
                 width={"100%"} columns={this.state.columns} source={this.state.source} theme={this.state.theme}
                 pageable={true} autoheight={true} sortable={true} altrows={true}
                 enabletooltips={true}
                 />
+                <JqxWindow ref={this.createWindow} width={250} resizable={true}
+                    isModal={false} autoOpen={false} modalOpacity={'0.01'}>
+                    <div>Create</div>
+                      <table>
+                            <tbody>
+                                <tr>
+                                    <td align={'right'}>Passenger Id:</td>
+                                    <td align={'left'}>
+                                       <JqxInput ref={this.createPassengerId} width={150} height={23} disabled={true} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Pclass:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createPclass} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Name:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createName} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Sex:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createSex} width={150} height={23}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Age:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createAge} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td align={'right'}>SibSp:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createSibSp} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Parch:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createParch} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Ticket:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createTicket} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Fare:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createFare} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Cabin:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createCabin} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'}>Embarked:</td>
+                                    <td align={'left'}>
+                                        <JqxInput ref={this.createEmbarked} width={150} height={23} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align={'right'} />
+                                    <td style={{ paddingTop: '10px' }} align={'right'}>
+                                        <JqxButton style={{ display: 'inline-block', marginRight: '5px' }} width={50} onClick={() => this.saveCreateButton()}>
+                                            Save
+                                        </JqxButton>
+                                        <JqxButton style={{ display: 'inline-block', marginRight: '5px' }} width={50} onClick={() => this.cancelCreateBtn()}>
+                                            Cancel
+                                        </JqxButton>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </JqxWindow>
                 <JqxWindow ref={this.editWindow} width={250} resizable={true}
                     isModal={false} autoOpen={false} modalOpacity={'0.01'}>
                     <div>Edit</div>

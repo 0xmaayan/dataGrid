@@ -6,7 +6,7 @@ import UploadData from './UploadData';
 import Search from './Search';
 import TableGrid from './TableGrid/Index';
 // Actions
-import { siteUpdateData, siteDeleteData } from '../redux/actions/data';
+import { siteUpdateData, siteDeleteData, siteCreateData } from '../redux/actions/data';
 
 class App extends Component {
 
@@ -15,7 +15,7 @@ class App extends Component {
     }
 
     render() {
-        const {data, siteUpdateData, siteDeleteData} = this.props;
+        const {data, siteUpdateData, siteDeleteData, siteCreateData} = this.props;
 
         return (
             <div className="container">
@@ -32,6 +32,7 @@ class App extends Component {
                             <TableGrid data={data} 
                             siteUpdateData={(data) => siteUpdateData(data)}
                             siteDeleteData={(data) => siteDeleteData(data)}
+                            siteCreateData={(data) => siteCreateData(data)}
                             />                    
                         </div>
                     }
@@ -43,7 +44,8 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     siteUpdateData: (data) => dispatch(siteUpdateData(data)),
-    siteDeleteData: (data) => dispatch(siteDeleteData(data))
+    siteDeleteData: (data) => dispatch(siteDeleteData(data)),
+    siteCreateData: (data) => dispatch(siteCreateData(data))
   }
 }
 const mapStateToProps = (state) => {
