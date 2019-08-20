@@ -169,10 +169,6 @@ class TableGrid extends Component {
             this.setState({
               source : new jqx.dataAdapter(source)
             })
-          
-            // passing 'cells' to the 'updatebounddata' method will refresh only the cells values when the new rows count is equal to the previous rows count.
-            this.myGrid.current.updatebounddata('cells');
-
         }
   }
 
@@ -393,10 +389,10 @@ class TableGrid extends Component {
                 </JqxWindow>
                 <div className="row">
                   <div className="col-md-6">
-                    <PieChart text="My pie chart" name="Sex" index="Sex" data={this.props.data}/>
+                    <PieChart text="Sex Pie" name="Sex" index="Sex" data={this.props.data}/>
                   </div>
                 <div className="col-md-6">
-                  <BarChart text="My bar chart" name="Pclass" index="Pclass" data={this.props.data}/>
+                  <BarChart text="Pclass Chart" name="Pclass" index="Pclass" data={this.props.data}/>
                 </div>
                 </div>
               </div>
