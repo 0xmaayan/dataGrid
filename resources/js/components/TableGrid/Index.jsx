@@ -149,7 +149,8 @@ class TableGrid extends Component {
     this.setState({
       source : new jqx.dataAdapter(source)
     })
-    
+    this.myGrid.current!.setOptions({ source: this.getAdapter() });
+
       // passing 'cells' to the 'updatebounddata' method will refresh only the cells values when the new rows count is equal to the previous rows count.
       this.myGrid.current.updatebounddata('cells');
   }
