@@ -34,10 +34,8 @@ class TableGrid extends Component {
     this.Fare = React.createRef();
     this.Cabin = React.createRef();
     this.Embarked = React.createRef();
-<<<<<<< HEAD
     this.myDropDownList = React.createRef();
     this.searchInput = React.createRef();
-=======
     // create refs values
     this.createPassengerId = React.createRef();
     this.createPclass = React.createRef();
@@ -50,7 +48,6 @@ class TableGrid extends Component {
     this.createFare = React.createRef();
     this.createCabin = React.createRef();
     this.createEmbarked = React.createRef();
->>>>>>> origin/master
     // binding functions
     this.saveEditButton = this.saveEditButton.bind(this);
 
