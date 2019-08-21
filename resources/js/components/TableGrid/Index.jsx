@@ -99,7 +99,7 @@ class TableGrid extends Component {
       ],
       source: new jqx.dataAdapter(source,{ autoBind: true }),
       theme: 'material-purple',
-      dropDownSource: ['First Name', 'Last Name', 'Product', 'Quantity', 'Price']
+      dropDownSource: ['Passenger Id', 'Pclass', 'Name', 'Sex', 'Age', 'SibSp', 'Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked']
     }
   }
 
@@ -182,11 +182,6 @@ class TableGrid extends Component {
         this.editWindow.current.hide();
     }
 
-  searchButtonClick () {
-            this.searchWindow.current.open();
-            /*this.myWindow.current!.move(60, 60);*/
-          };
-
   async deleteButtonClick(){
     const rowIndex = this.myGrid.current.getselectedrowindex();
     const rowData = this.myGrid.current.getrowdata(rowIndex);
@@ -202,11 +197,21 @@ class TableGrid extends Component {
     })
   }
 
-  findBtnOnClick(){
-    console.log('findBtnOnClick');
+   searchButtonClick () {
+    this.searchWindow.current.open();
+    /*this.myWindow.current!.move(60, 60);*/
+  };
+
+  async findBtnOnClick(){
+    var searchText = this.searchInput.current.getOptions('value');
+    var searchColumnIndex = this.myDropDownList.current.getSelectedItem().label;
+    console.log('searchText',searchText);
+    console.log('searchColumnIndex',searchColumnIndex);
+    
   }
-  clearBtnOnClick() {
+  clearFilterBtnOnClick() {
         console.log('clearBtnOnClick');
+        this.myGrid.current.clearfilters();
     }
 
           render() {
@@ -410,12 +415,12 @@ class TableGrid extends Component {
                                 source={this.state.dropDownSource} autoDropDownHeight={true} />
                         </div>
                         <div>
-                            <JqxButton style={{ marginTop: '15px', marginLeft: '50px', float: 'left' }}
+                            <JqxButton style={{ marginTop: '15px', float: 'left' }}
                                 onClick={() => this.findBtnOnClick()} width={70}>
                                 Find
                             </JqxButton>
                             <JqxButton style={{ marginLeft: '5px', marginTop: '15px', float: 'left' }}
-                                onClick={() => this.clearBtnOnClick()} width={70}>
+                                onClick={() => this.clearFilterBtnOnClick()} width={70}>
                                 Clear
                             </JqxButton>
                         </div>
