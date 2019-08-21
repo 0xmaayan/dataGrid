@@ -9,6 +9,14 @@ use App\Data;
 
 class DataController extends Controller
 {
+	public function index(){
+		$data = Data::all()->toArray();
+		
+		return response()->json([
+			'data' => $data
+		]); 
+	}
+
 	public function store(Request $request){
 		$data = $request->only('PassengerId','Pclass','Name','Sex','Age','SibSp','Parch','Ticket','Fare','Cabin','Embarked');
 		$record = Data::create($data);

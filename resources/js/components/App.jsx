@@ -6,7 +6,7 @@ import UploadData from './UploadData';
 import Search from './Search';
 import TableGrid from './TableGrid/Index';
 // Actions
-import { siteUpdateData, siteDeleteData, siteCreateData } from '../redux/actions/data';
+import { siteUpdateData, siteDeleteData, siteCreateData, siteFilterData, siteClearFilterData } from '../redux/actions/data';
 
 class App extends Component {
 
@@ -15,7 +15,7 @@ class App extends Component {
     }
 
     render() {
-        const {data, siteUpdateData, siteDeleteData, siteCreateData} = this.props;
+        const {data, siteUpdateData, siteDeleteData, siteCreateData, siteFilterData, siteClearFilterData} = this.props;
 
         return (
             <div className="container">
@@ -33,6 +33,8 @@ class App extends Component {
                             siteUpdateData={(data) => siteUpdateData(data)}
                             siteDeleteData={(data) => siteDeleteData(data)}
                             siteCreateData={(data) => siteCreateData(data)}
+                            siteFilterData={(data) => siteFilterData(data)}
+                            siteClearFilterData={() => siteClearFilterData()}
                             />                    
                         </div>
                     }
@@ -45,7 +47,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     siteUpdateData: (data) => dispatch(siteUpdateData(data)),
     siteDeleteData: (data) => dispatch(siteDeleteData(data)),
-    siteCreateData: (data) => dispatch(siteCreateData(data))
+    siteCreateData: (data) => dispatch(siteCreateData(data)),
+    siteFilterData: (data) => dispatch(siteFilterData(data)),
+    siteClearFilterData: () => dispatch(siteClearFilterData())
   }
 }
 const mapStateToProps = (state) => {

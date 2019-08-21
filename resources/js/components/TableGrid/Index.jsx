@@ -129,16 +129,7 @@ class TableGrid extends Component {
 
     this.createWindow.current.hide();
     await this.props.siteCreateData(data);
-
-    let source =
-    {
-      datatype: 'json',
-      localdata: this.props.data,
-      id: 'PassengerId'
-    };
-    this.setState({
-      source : new jqx.dataAdapter(source)
-    })
+    this.reloadTableData();
   }
 
   cancelCreateBtn(){
@@ -165,16 +156,7 @@ class TableGrid extends Component {
             this.editWindow.current.hide();
            
             await this.props.siteUpdateData(row);
-
-            let source =
-            {
-              datatype: 'json',
-              localdata: this.props.data,
-              id: 'PassengerId'
-            };
-            this.setState({
-              source : new jqx.dataAdapter(source)
-            })
+            this.reloadTableData();
         }
   }
 
@@ -186,32 +168,42 @@ class TableGrid extends Component {
     const rowIndex = this.myGrid.current.getselectedrowindex();
     const rowData = this.myGrid.current.getrowdata(rowIndex);
     await this.props.siteDeleteData(rowData);
-    let source =
-    {
-      datatype: 'json',
-      localdata: this.props.data,
-      id: 'PassengerId'
-    };
-    this.setState({
-      source : new jqx.dataAdapter(source)
-    })
+    this.reloadTableData();
   }
 
    searchButtonClick () {
     this.searchWindow.current.open();
-    /*this.myWindow.current!.move(60, 60);*/
   };
 
   async findBtnOnClick(){
     var searchText = this.searchInput.current.getOptions('value');
-    var searchColumnIndex = this.myDropDownList.current.getSelectedItem().label;
-    console.log('searchText',searchText);
-    console.log('searchColumnIndex',searchColumnIndex);
-    
+    var searchColumnValue = this.myDropDownList.current.getSelectedItem().label;
+
+    let filter = {
+      searchText:searchText,
+      searchColumnValue:searchColumnValue.replace(/\s/g, '')
+    }
+
+    await this.props.siteFilterData(filter)
+    this.reloadTableData();
   }
-  clearFilterBtnOnClick() {
+  async clearFilterBtnOnClick() {
         console.log('clearBtnOnClick');
-        this.myGrid.current.clearfilters();
+        await this.props.siteClearFilterData()
+        this.reloadTableData();
+        this.searchWindow.current.close();
+    }
+
+    reloadTableData(){
+        let source =
+        {
+          datatype: 'json',
+          localdata: this.props.data,
+          id: 'PassengerId'
+        };
+        this.setState({
+          source : new jqx.dataAdapter(source)
+        })
     }
 
           render() {

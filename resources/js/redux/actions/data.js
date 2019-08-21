@@ -1,8 +1,10 @@
 import {
+  GET_DATA,
   ADD_DATA,
   UPDATE_DATA,
   DELETE_DATA,
   CREATE_DATA,
+  FILTER_DATA,
   IS_LOADING,
   HAS_ERROR
 } from './types';
@@ -59,6 +61,31 @@ export const siteCreateData = (data) => {
   }
 }
 
+export const siteFilterData = (data) => {
+  return function(dispatch){
+    dispatch(siteFilterDataSuccess(data))
+  }
+}
+
+export const siteClearFilterData = () => {
+  return function(dispatch){
+    return axios.get(process.env.MIX_API_URL+'data/')
+    .then( (response) => {
+      dispatch(siteGetDataSuccess(response.data));
+    })
+    .catch((response) => {
+      dispatch(datasHasError(response));
+    });
+  }
+}
+
+export function siteGetDataSuccess(data) {
+  return {
+    type: GET_DATA,
+    payload: data
+  }
+}
+
 export function siteAddDataSuccess(data){
   return {
     type: ADD_DATA,
@@ -85,6 +112,13 @@ export function siteCreateDataSuccess(data) {
     type: CREATE_DATA,
     payload: data
   };
+}
+
+export function siteFilterDataSuccess(data){
+  return {
+    type: FILTER_DATA,
+    payload:data
+  }
 }
 
 export function dataIsLoading(bool){
