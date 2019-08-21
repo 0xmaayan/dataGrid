@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import connect from "react-redux/es/connect/connect";
 // components
 import UploadData from './UploadData';
-import Search from './Search';
 import TableGrid from './TableGrid/Index';
 // Actions
 import { siteUpdateData, siteDeleteData, siteCreateData, siteFilterData, siteClearFilterData } from '../redux/actions/data';
@@ -22,9 +21,6 @@ class App extends Component {
                 <div className="row justify-content-center">
                     <div className="col-md-6">
                         <UploadData/>
-                    </div>
-                    <div className="col-md-6">
-                        <Search/>
                     </div>
                     {
                         data && !!data.length && 
