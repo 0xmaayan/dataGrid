@@ -175,6 +175,11 @@ class TableGrid extends Component {
     this.searchWindow.current.open();
   };
 
+  async onChartSliceClick(data){
+    await this.props.siteFilterData(data)
+    this.reloadTableData();
+  }
+
   async findBtnOnClick(){
     var searchText = this.searchInput.current.getOptions('value');
     var searchColumnValue = this.myDropDownList.current.getSelectedItem().label;
@@ -420,10 +425,10 @@ class TableGrid extends Component {
                 </JqxWindow>
                 <div className="row">
                   <div className="col-md-6">
-                    <PieChart text="Sex Pie" name="Sex" index="Sex" data={this.props.data}/>
+                    <PieChart text="Sex Pie" name="Sex" index="Sex" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>
                   </div>
                 <div className="col-md-6">
-                  <BarChart text="Pclass Chart" name="Pclass" index="Pclass" data={this.props.data}/>
+                  <BarChart text="Pclass Chart" name="Pclass" index="Pclass" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>
                 </div>
                 </div>
               </div>

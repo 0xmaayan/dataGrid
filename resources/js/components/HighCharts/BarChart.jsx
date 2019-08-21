@@ -31,8 +31,10 @@ class BarChart extends React.Component {
             point: {
                 events: {
                     click: function () {
-                      console.log('this.name',this.name);
-                      console.log('this.series.name',this.series.name);
+                      props.onChartSliceClick({
+                         searchText:this.name,
+                         searchColumnValue:this.series.name
+                     })
                     }
                 }
             }
