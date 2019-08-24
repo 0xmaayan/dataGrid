@@ -1,0 +1,11 @@
+.data-wrapper{
+	margin-top: 20px;
+}
+
+.actions-buttons-wrapper{
+	display: flex;
+}
+
+.search-button{
+	margin-left: auto;
+}

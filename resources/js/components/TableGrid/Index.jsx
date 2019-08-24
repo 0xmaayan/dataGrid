@@ -14,6 +14,8 @@ import CreateWindow from './createWindow';
 import SearchWindow from './searchWindow';
 import EditWindow from './editWindow';
 import Charts from '../Highcharts/index';
+// style
+import './style.css';
 
 class TableGrid extends Component {
 
@@ -97,18 +99,21 @@ class TableGrid extends Component {
 
   render() {
     return (
-      <div>
-        <JqxButton onClick={() => this.searchButtonClick()}
-        width={80} height={25} value={'Search'} textPosition={'center'} />
+      <div className="data-wrapper">
+        <div className="actions-buttons-wrapper">
+          <JqxButton onClick={() => this.createButtonClick()} theme={this.state.theme}
+          width={80} height={25} value={'Add'} textPosition={'center'} />
 
-        <JqxButton onClick={() => this.deleteButtonClick()}
-        width={80} height={25} value={'Delete'} textPosition={'center'} disabled={this.state.disableButton} />
+          <JqxButton onClick={() => this.editButtonClick()} theme={this.state.theme}
+          width={80} height={25} value={'Edit'} textPosition={'center'} disabled={this.state.disableButton} />
 
-        <JqxButton onClick={() => this.editButtonClick()}
-        width={80} height={25} value={'Edit'} textPosition={'center'} disabled={this.state.disableButton} />
+          <JqxButton onClick={() => this.deleteButtonClick()} theme={this.state.theme}
+          width={80} height={25} value={'Delete'} textPosition={'center'} disabled={this.state.disableButton} />
 
-        <JqxButton onClick={() => this.createButtonClick()}
-        width={80} height={25} value={'Add'} textPosition={'center'} />
+          <JqxButton onClick={() => this.searchButtonClick()} className="search-button" theme={this.state.theme}
+          width={80} height={25} value={'Search'} textPosition={'center'} />
+
+        </div>
 
         <JqxGrid ref={this.myGrid} onRowselect={() => this.enableActionButtons()}
         width={"100%"} columns={this.state.columns} source={this.state.source} theme={this.state.theme}
