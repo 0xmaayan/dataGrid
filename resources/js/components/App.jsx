@@ -23,7 +23,7 @@ class App extends Component {
                         <UploadData/>
                     </div>
                     {
-                        data && !!data.length && 
+                        data.length !== 0 && 
                         <div className="col-lg-12">
                             <Data data={data} 
                             siteDeleteData={(data) => siteDeleteData(data)}
