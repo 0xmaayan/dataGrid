@@ -9,13 +9,11 @@ import JqxWindow from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxwindow';
 import JqxInput from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxinput';
 import JqxNumberInput from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxnumberinput';
 import JqxDropDownList from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxdropdownlist';
-// Highcharts
-import BarChart from '../Highcharts/BarChart';
-import PieChart from '../Highcharts/PieChart';
 // Components
 import CreateWindow from './createWindow';
 import SearchWindow from './searchWindow';
 import EditWindow from './editWindow';
+import Charts from '../Highcharts/index';
 
 class TableGrid extends Component {
 
@@ -76,11 +74,6 @@ class TableGrid extends Component {
     this.searchWindowRef.current.openWindow();
   };
 
-  async onChartSliceClick(data){
-    await this.props.siteFilterData(data)
-    this.reloadTableData();
-  }
-
   enableActionButtons(){
     this.setState({
       disableButton : false
@@ -122,14 +115,7 @@ class TableGrid extends Component {
                 <CreateWindow ref={this.createWindowRef} reloadTableData={() => this.reloadTableData()} />
                 <EditWindow ref={this.editWindowRef} reloadTableData={() => this.reloadTableData()} />
                 <SearchWindow ref={this.searchWindowRef} reloadTableData={() => this.reloadTableData()} />
-                <div className="row">
-                  <div className="col-md-6">
-                    <PieChart text="Sex Pie" name="Sex" index="Sex" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>
-                  </div>
-                <div className="col-md-6">
-                  <BarChart text="Pclass Chart" name="Pclass" index="Pclass" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>
-                </div>
-                </div>
+                <Charts reloadTableData={() => this.reloadTableData()} data={this.props.data}/>
               </div>
               );
           }

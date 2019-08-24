@@ -14,7 +14,7 @@ class App extends Component {
     }
 
     render() {
-        const {data, siteUpdateData, siteDeleteData} = this.props;
+        const {data, siteDeleteData} = this.props;
 
         return (
             <div className="container">
