@@ -88,6 +88,7 @@ class TableGrid extends Component {
       ],
       source: new jqx.dataAdapter(source,{ autoBind: true }),
       theme: 'material-purple',
+      disableButton: true
     }
   }
 
@@ -142,6 +143,12 @@ class TableGrid extends Component {
     this.reloadTableData();
   }
 
+  enableActionButtons(){
+    this.setState({
+      disableButton : false
+    })
+  }
+
     reloadTableData(){
         let source =
         {
@@ -161,12 +168,12 @@ class TableGrid extends Component {
                 width={80} height={25} value={'Search'} textPosition={'center'} />
 
                 <JqxButton onClick={() => this.deleteButtonClick()}
-                width={80} height={25} value={'Delete'} textPosition={'center'} />
+                width={80} height={25} value={'Delete'} textPosition={'center'} disabled={this.state.disableButton} />
 
                 <JqxButton onClick={() => this.createButtonClick()}
                 width={80} height={25} value={'Add'} textPosition={'center'} />
 
-                <JqxGrid ref={this.myGrid}
+                <JqxGrid ref={this.myGrid} onRowselect={() => this.enableActionButtons()}
                 width={"100%"} columns={this.state.columns} source={this.state.source} theme={this.state.theme}
                 pageable={true} autoheight={true} sortable={true} altrows={true}
                 enabletooltips={true}
