@@ -14,6 +14,7 @@ import BarChart from '../Highcharts/BarChart';
 import PieChart from '../Highcharts/PieChart';
 // Components
 import CreateWindow from './createWindow';
+import SearchWindow from './searchWindow';
 
 class TableGrid extends Component {
 
@@ -21,7 +22,7 @@ class TableGrid extends Component {
     super(props);
     this.createWindowRef = React.createRef();
     this.editWindow = React.createRef();
-    this.searchWindow = React.createRef();
+    this.searchWindowRef = React.createRef();
     this.myGrid = React.createRef();
     // data values refs
     this.PassengerId = React.createRef();
@@ -35,8 +36,7 @@ class TableGrid extends Component {
     this.Fare = React.createRef();
     this.Cabin = React.createRef();
     this.Embarked = React.createRef();
-    this.myDropDownList = React.createRef();
-    this.searchInput = React.createRef();
+    
     // binding functions
     this.saveEditButton = this.saveEditButton.bind(this);
 
@@ -88,7 +88,6 @@ class TableGrid extends Component {
       ],
       source: new jqx.dataAdapter(source,{ autoBind: true }),
       theme: 'material-purple',
-      dropDownSource: ['Passenger Id', 'Pclass', 'Name', 'Sex', 'Age', 'SibSp', 'Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked']
     }
   }
 
@@ -140,32 +139,13 @@ class TableGrid extends Component {
   }
 
    searchButtonClick () {
-    this.searchWindow.current.open();
+    this.searchWindowRef.current.openWindow();
   };
 
   async onChartSliceClick(data){
     await this.props.siteFilterData(data)
     this.reloadTableData();
   }
-
-  async findBtnOnClick(){
-    var searchText = this.searchInput.current.getOptions('value');
-    var searchColumnValue = this.myDropDownList.current.getSelectedItem().label;
-
-    let filter = {
-      searchText:searchText,
-      searchColumnValue:searchColumnValue.replace(/\s/g, '')
-    }
-
-    await this.props.siteFilterData(filter)
-    this.reloadTableData();
-  }
-  async clearFilterBtnOnClick() {
-        console.log('clearBtnOnClick');
-        await this.props.siteClearFilterData()
-        this.reloadTableData();
-        this.searchWindow.current.close();
-    }
 
     reloadTableData(){
         let source =
@@ -196,7 +176,7 @@ class TableGrid extends Component {
                 pageable={true} autoheight={true} sortable={true} altrows={true}
                 enabletooltips={true}
                 />
-                <CreateWindow ref={this.createWindowRef} updateData={(data) => this.updateData(data)}/>
+                <CreateWindow ref={this.createWindowRef} updateData={(data) => this.updateData(data)} />
                 <JqxWindow ref={this.editWindow} width={250} resizable={true}
                     isModal={false} autoOpen={false} modalOpacity={'0.01'}>
                     <div>Edit</div>
@@ -282,31 +262,7 @@ class TableGrid extends Component {
                             </tbody>
                         </table>
                 </JqxWindow>
-                <JqxWindow ref={this.searchWindow} width={210} height={180} autoOpen={false} resizable={false}>
-                    <div>Find Record</div>
-                    <div style={{ overflow: 'hidden' }}>
-                        <div>Find what:</div>
-                        <div style={{ marginTop: '5px' }}>
-                            <JqxInput ref={this.searchInput} width={194} height={23} />
-                        </div>
-                        <div style={{ marginTop: '7px', clear: 'both' }}>Look in:</div>
-                        <div style={{ marginTop: '5px' }}>
-                            <JqxDropDownList ref={this.myDropDownList}
-                                width={200} height={23} selectedIndex={0}
-                                source={this.state.dropDownSource} autoDropDownHeight={true} />
-                        </div>
-                        <div>
-                            <JqxButton style={{ marginTop: '15px', float: 'left' }}
-                                onClick={() => this.findBtnOnClick()} width={70}>
-                                Find
-                            </JqxButton>
-                            <JqxButton style={{ marginLeft: '5px', marginTop: '15px', float: 'left' }}
-                                onClick={() => this.clearFilterBtnOnClick()} width={70}>
-                                Clear
-                            </JqxButton>
-                        </div>
-                    </div>
-                </JqxWindow>
+                <SearchWindow ref={this.searchWindowRef} reloadTableData={() => this.reloadTableData()} />
                 <div className="row">
                   <div className="col-md-6">
                     <PieChart text="Sex Pie" name="Sex" index="Sex" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>

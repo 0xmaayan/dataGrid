@@ -5,7 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import UploadData from './UploadData';
 import TableGrid from './TableGrid/Index';
 // Actions
-import { siteUpdateData, siteDeleteData, siteCreateData, siteFilterData, siteClearFilterData } from '../redux/actions/data';
+import { siteUpdateData, siteDeleteData, siteCreateData } from '../redux/actions/data';
 
 class App extends Component {
 
@@ -29,8 +29,6 @@ class App extends Component {
                             siteUpdateData={(data) => siteUpdateData(data)}
                             siteDeleteData={(data) => siteDeleteData(data)}
                             siteCreateData={(data) => siteCreateData(data)}
-                            siteFilterData={(data) => siteFilterData(data)}
-                            siteClearFilterData={() => siteClearFilterData()}
                             />                    
                         </div>
                     }
@@ -43,9 +41,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     siteUpdateData: (data) => dispatch(siteUpdateData(data)),
     siteDeleteData: (data) => dispatch(siteDeleteData(data)),
-    siteCreateData: (data) => dispatch(siteCreateData(data)),
-    siteFilterData: (data) => dispatch(siteFilterData(data)),
-    siteClearFilterData: () => dispatch(siteClearFilterData())
+    siteCreateData: (data) => dispatch(siteCreateData(data))
   }
 }
 const mapStateToProps = (state) => {
