@@ -22,10 +22,10 @@ class Chart extends Component {
       <div>
         <div className="row">
           <div className="col-md-6">
-            <PieChart text="Sex Pie" name="Sex" index="Sex" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>
+            <PieChart text="Sex Data Pie" name="Sex" index="Sex" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>
           </div>
           <div className="col-md-6">
-            <BarChart text="Pclass Chart" name="Pclass" index="Pclass" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>
+            <BarChart text="Pclass Data Chart" name="Pclass" index="Pclass" data={this.props.data} onChartSliceClick={(data)=>this.onChartSliceClick(data)}/>
           </div>
         </div>
       </div>
