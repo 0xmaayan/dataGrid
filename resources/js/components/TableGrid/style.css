@@ -6,6 +6,6 @@
 	display: flex;
 }
 
-.search-button{
+.actions-buttons-wrapper div:last-child{
 	margin-left: auto;
 }
