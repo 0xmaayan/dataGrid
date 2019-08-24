@@ -5,7 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import UploadData from './UploadData';
 import TableGrid from './TableGrid/Index';
 // Actions
-import { siteUpdateData, siteDeleteData, siteCreateData } from '../redux/actions/data';
+import { siteUpdateData, siteDeleteData } from '../redux/actions/data';
 
 class App extends Component {
 
@@ -14,7 +14,7 @@ class App extends Component {
     }
 
     render() {
-        const {data, siteUpdateData, siteDeleteData, siteCreateData, siteFilterData, siteClearFilterData} = this.props;
+        const {data, siteUpdateData, siteDeleteData} = this.props;
 
         return (
             <div className="container">
