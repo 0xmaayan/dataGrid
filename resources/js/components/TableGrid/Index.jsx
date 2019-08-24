@@ -58,14 +58,12 @@ class TableGrid extends Component {
   }
 
   editButtonClick(){
-    const rowIndex = this.myGrid.current.getselectedrowindex();
-    const dataRecord = this.myGrid.current.getrowdata(rowIndex);
+    const dataRecord = this.getRowData();
     this.editWindowRef.current.openWindow(dataRecord);
   }
 
   async deleteButtonClick(){
-    const rowIndex = this.myGrid.current.getselectedrowindex();
-    const rowData = this.myGrid.current.getrowdata(rowIndex);
+    const rowData = this.getRowData();
     await this.props.siteDeleteData(rowData);
     this.reloadTableData();
   }
@@ -80,45 +78,50 @@ class TableGrid extends Component {
     })
   }
 
-    reloadTableData(){
-        let source =
-        {
-          datatype: 'json',
-          localdata: this.props.data,
-          id: 'PassengerId'
-        };
-        this.setState({
-          source : new jqx.dataAdapter(source)
-        })
-    }
+  getRowData(){
+    const rowIndex = this.myGrid.current.getselectedrowindex();
+    return this.myGrid.current.getrowdata(rowIndex);
+  }
 
-          render() {
-            return (
-              <div>
-                <JqxButton onClick={() => this.searchButtonClick()}
-                width={80} height={25} value={'Search'} textPosition={'center'} />
+  reloadTableData(){
+      let source =
+      {
+        datatype: 'json',
+        localdata: this.props.data,
+        id: 'PassengerId'
+      };
+      this.setState({
+        source : new jqx.dataAdapter(source)
+      })
+  }
 
-                <JqxButton onClick={() => this.deleteButtonClick()}
-                width={80} height={25} value={'Delete'} textPosition={'center'} disabled={this.state.disableButton} />
+  render() {
+    return (
+      <div>
+        <JqxButton onClick={() => this.searchButtonClick()}
+        width={80} height={25} value={'Search'} textPosition={'center'} />
 
-                <JqxButton onClick={() => this.editButtonClick()}
-                width={80} height={25} value={'Edit'} textPosition={'center'} disabled={this.state.disableButton} />
+        <JqxButton onClick={() => this.deleteButtonClick()}
+        width={80} height={25} value={'Delete'} textPosition={'center'} disabled={this.state.disableButton} />
 
-                <JqxButton onClick={() => this.createButtonClick()}
-                width={80} height={25} value={'Add'} textPosition={'center'} />
+        <JqxButton onClick={() => this.editButtonClick()}
+        width={80} height={25} value={'Edit'} textPosition={'center'} disabled={this.state.disableButton} />
 
-                <JqxGrid ref={this.myGrid} onRowselect={() => this.enableActionButtons()}
-                width={"100%"} columns={this.state.columns} source={this.state.source} theme={this.state.theme}
-                pageable={true} autoheight={true} sortable={true} altrows={true}
-                enabletooltips={true}
-                />
-                <CreateWindow ref={this.createWindowRef} reloadTableData={() => this.reloadTableData()} />
-                <EditWindow ref={this.editWindowRef} reloadTableData={() => this.reloadTableData()} />
-                <SearchWindow ref={this.searchWindowRef} reloadTableData={() => this.reloadTableData()} />
-                <Charts reloadTableData={() => this.reloadTableData()} data={this.props.data}/>
-              </div>
-              );
-          }
-        }
+        <JqxButton onClick={() => this.createButtonClick()}
+        width={80} height={25} value={'Add'} textPosition={'center'} />
 
-        export default TableGrid;
+        <JqxGrid ref={this.myGrid} onRowselect={() => this.enableActionButtons()}
+        width={"100%"} columns={this.state.columns} source={this.state.source} theme={this.state.theme}
+        pageable={true} autoheight={true} sortable={true} altrows={true}
+        enabletooltips={true}
+        />
+        <CreateWindow ref={this.createWindowRef} reloadTableData={() => this.reloadTableData()} />
+        <EditWindow ref={this.editWindowRef} reloadTableData={() => this.reloadTableData()} />
+        <SearchWindow ref={this.searchWindowRef} reloadTableData={() => this.reloadTableData()} />
+        <Charts reloadTableData={() => this.reloadTableData()} data={this.props.data}/>
+      </div>
+      );
+  }
+}
+
+export default TableGrid;
