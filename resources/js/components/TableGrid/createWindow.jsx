@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-
+import connect from "react-redux/es/connect/connect";
+// jxwidgets
 import JqxButton from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxbuttons';
 import JqxWindow from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxwindow';
 import JqxInput from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxinput';
+// Actions
+import { siteCreateData } from '../../redux/actions/data';
 
 class createWindow extends Component {
 
@@ -46,7 +49,8 @@ class createWindow extends Component {
     };
 
     this.createWindow.current.hide();
-    this.props.updateData(data);
+    await this.props.siteCreateData(data);
+    this.props.reloadTableData();
   }
 
   cancelCreateBtn(){
@@ -144,4 +148,10 @@ class createWindow extends Component {
 	}
 }
 
-export default createWindow;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    siteCreateData: (data) => dispatch(siteCreateData(data))
+  }
+}
+
+export default connect(null, mapDispatchToProps,null,{ forwardRef: true })(createWindow);

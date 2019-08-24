@@ -98,11 +98,6 @@ class TableGrid extends Component {
     this.createWindowRef.current.openWindow(newPassengerId);
   }
 
-  async updateData(data){
-    await this.props.siteCreateData(data);
-    this.reloadTableData();
-  }
-
   async saveEditButton(e){
     if (this.editrow >= 0) {
             const row = {
@@ -176,7 +171,7 @@ class TableGrid extends Component {
                 pageable={true} autoheight={true} sortable={true} altrows={true}
                 enabletooltips={true}
                 />
-                <CreateWindow ref={this.createWindowRef} updateData={(data) => this.updateData(data)} />
+                <CreateWindow ref={this.createWindowRef} reloadTableData={() => this.reloadTableData()} />
                 <JqxWindow ref={this.editWindow} width={250} resizable={true}
                     isModal={false} autoOpen={false} modalOpacity={'0.01'}>
                     <div>Edit</div>

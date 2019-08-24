@@ -28,7 +28,6 @@ class App extends Component {
                             <TableGrid data={data} 
                             siteUpdateData={(data) => siteUpdateData(data)}
                             siteDeleteData={(data) => siteDeleteData(data)}
-                            siteCreateData={(data) => siteCreateData(data)}
                             />                    
                         </div>
                     }
@@ -40,8 +39,7 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     siteUpdateData: (data) => dispatch(siteUpdateData(data)),
-    siteDeleteData: (data) => dispatch(siteDeleteData(data)),
-    siteCreateData: (data) => dispatch(siteCreateData(data))
+    siteDeleteData: (data) => dispatch(siteDeleteData(data))
   }
 }
 const mapStateToProps = (state) => {
