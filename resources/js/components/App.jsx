@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import connect from "react-redux/es/connect/connect";
 // components
 import UploadData from './UploadData';
-import TableGrid from './TableGrid/Index';
+import Data from './TableGrid/Index';
 // Actions
 import { siteUpdateData, siteDeleteData } from '../redux/actions/data';
 
@@ -25,7 +25,7 @@ class App extends Component {
                     {
                         data && !!data.length && 
                         <div className="col-lg-12">
-                            <TableGrid data={data} 
+                            <Data data={data} 
                             siteDeleteData={(data) => siteDeleteData(data)}
                             />                    
                         </div>
