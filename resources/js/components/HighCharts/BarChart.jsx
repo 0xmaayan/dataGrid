@@ -1,7 +1,8 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
+import PropTypes from 'prop-types';
 // High charts
-import Highcharts from 'highcharts'
+import Highcharts from 'highcharts';
 import HighchartsReact from "highcharts-react-official";
 // helpers
 import setData from './helpers';
@@ -75,6 +76,14 @@ class BarChart extends React.Component {
       </div>
       );
   }
+}
+
+BarChart.propTypes = {
+    name: PropTypes.string,
+    text: PropTypes.string,
+    index: PropTypes.string,
+    data: PropTypes.array,
+    onChartSliceClick: PropTypes.func
 }
 
 export default BarChart;

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
+import PropTypes from 'prop-types';
 // Highcharts
 import BarChart from './BarChart';
 import PieChart from './PieChart';
@@ -31,6 +32,12 @@ class Chart extends Component {
       </div>
       );
   }
+}
+
+Chart.propTypes = {
+    data: PropTypes.array,
+    reloadTableData: PropTypes.func,
+    siteFilterData: PropTypes.func
 }
 
 const mapDispatchToProps = (dispatch) => {

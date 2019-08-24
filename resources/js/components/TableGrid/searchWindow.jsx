@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
+import PropTypes from 'prop-types';
 // jxwidgets
 import JqxButton from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxbuttons';
 import JqxWindow from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxwindow';
@@ -74,6 +75,12 @@ console.log(this.props);
                 </JqxWindow>
 			)
 	}
+}
+
+searchWindow.propTypes = {
+    siteUpdateData: PropTypes.func,
+    siteClearFilterData: PropTypes.func,
+    reloadTableData: PropTypes.func
 }
 
 const mapDispatchToProps = (dispatch) => {

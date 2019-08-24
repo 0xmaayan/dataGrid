@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 // jxwidgets
 import 'jqwidgets-scripts/jqwidgets/styles/jqx.base.css';
@@ -127,6 +128,10 @@ class TableGrid extends Component {
       </div>
       );
   }
+}
+
+TableGrid.propTypes = {
+  data: PropTypes.array
 }
 
 export default TableGrid;

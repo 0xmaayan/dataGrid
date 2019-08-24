@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
+import PropTypes from 'prop-types';
 // jxwidgets
 import JqxButton from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxbuttons';
 import JqxWindow from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxwindow';
@@ -158,6 +159,11 @@ class editWindow extends Component {
                 </JqxWindow>
 			)
 	}
+}
+
+editWindow.propTypes = {
+    siteUpdateData: PropTypes.func,
+    reloadTableData: PropTypes.func
 }
 
 const mapDispatchToProps = (dispatch) => {

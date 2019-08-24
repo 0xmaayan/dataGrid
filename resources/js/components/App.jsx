@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import connect from "react-redux/es/connect/connect";
 // components
 import UploadData from './UploadData';
@@ -35,6 +36,12 @@ class App extends Component {
         );
     }
 }
+
+App.propTypes = {
+    siteDeleteData: PropTypes.func,
+    data: PropTypes.array
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     siteDeleteData: (data) => dispatch(siteDeleteData(data))

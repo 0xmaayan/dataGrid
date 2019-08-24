@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import axios, { post } from 'axios';
 import connect from "react-redux/es/connect/connect";
 // Actions
@@ -32,6 +33,10 @@ class UploadData extends Component {
 			</div>
 			)
 	}
+}
+
+UploadData.propTypes = {
+	siteAddData: PropTypes.func
 }
 
 const mapDispatchToProps = (dispatch) => {
