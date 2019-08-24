@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 // jxwidgets
 import 'jqwidgets-scripts/jqwidgets/styles/jqx.base.css';
 import 'jqwidgets-scripts/jqwidgets/styles/jqx.material-purple.css';
 import JqxGrid, {jqx} from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxgrid';
 import JqxButton from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxbuttons';
-import JqxWindow from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxwindow';
-import JqxInput from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxinput';
-import JqxNumberInput from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxnumberinput';
-import JqxDropDownList from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxdropdownlist';
 // Components
 import CreateWindow from './createWindow';
 import SearchWindow from './searchWindow';
