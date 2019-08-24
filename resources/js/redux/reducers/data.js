@@ -40,7 +40,12 @@ export default function (state = INITIAL_STATE.data, action) {
     case FILTER_DATA:
       let filteredState = state.filter((record) => {
         if(record[action.payload.searchColumnValue]){
-          return record[action.payload.searchColumnValue].includes(action.payload.searchText)
+           if(action.payload.searchColumnValue === "Sex"){
+              // since male is includes() in female, we need to compare between the strings
+             return record[action.payload.searchColumnValue] === action.payload.searchText
+            }else{
+              return record[action.payload.searchColumnValue].includes(action.payload.searchText)
+            }
         }
       });
       state = filteredState;
