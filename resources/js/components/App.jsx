@@ -26,7 +26,6 @@ class App extends Component {
                         data && !!data.length && 
                         <div className="col-lg-12">
                             <TableGrid data={data} 
-                            siteUpdateData={(data) => siteUpdateData(data)}
                             siteDeleteData={(data) => siteDeleteData(data)}
                             />                    
                         </div>
@@ -38,7 +37,6 @@ class App extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    siteUpdateData: (data) => dispatch(siteUpdateData(data)),
     siteDeleteData: (data) => dispatch(siteDeleteData(data))
   }
 }
