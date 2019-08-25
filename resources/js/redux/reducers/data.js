@@ -52,10 +52,10 @@ export default function (state = INITIAL_STATE.data, action) {
       return Object.assign([],state,state);
 
     case IS_LOADING:
-      return {...state, isLoading: action.isLoading};
+      console.log(action.isLoading)
 
     case HAS_ERROR:
-      return {...state, hasError: action.hasError};
+      console.log(action.hasError)
 
     default:
       return state;
