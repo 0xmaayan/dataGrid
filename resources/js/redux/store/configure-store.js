@@ -7,7 +7,7 @@ const middlewares = [
 thunk
 ];
 
-if (process.env.NODE_ENV === `development`) {
+if (process.env.MIX_NODE_ENV === `development`) {
 
   const { logger } = require(`redux-logger`);
 
