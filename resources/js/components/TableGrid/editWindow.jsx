@@ -80,7 +80,7 @@ class editWindow extends Component {
                                 <tr>
                                     <td align={'right'}>Passenger Id:</td>
                                     <td align={'left'}>
-                                       <JqxInput ref={this.PassengerId} width={150} height={23} />
+                                       <JqxInput ref={this.PassengerId} width={150} height={23} disabled={true} />
                                     </td>
                                 </tr>
                                 <tr>
