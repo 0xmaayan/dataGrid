@@ -37,8 +37,8 @@ RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # install Node
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - 
-RUN apt-get install -y nodejs
+#RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - 
+#RUN apt-get install -y nodejs
 
 # Copy existing application directory contents
 COPY . /var/www
