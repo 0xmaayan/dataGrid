@@ -9,7 +9,7 @@ import JqxButton from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxbuttons';
 import CreateWindow from './createWindow';
 import SearchWindow from './searchWindow';
 import EditWindow from './editWindow';
-import Charts from '../Highcharts/index';
+import Charts from '../HighCharts/index';
 // style
 import './style.css';
 
